@@ -20,14 +20,6 @@ local MainSection = Main:NewSection("Main")
         game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
     end)
 
-    PlayerSection:NewToggle("Fly", "Fly with Z", function(state)
-        if state then
-            print("Toggle On")
-        else
-            print("Toggle Off")
-        end
-    end)
-
     --Teleport
 
     local Teleport = Window:NewTab("Teleport")
@@ -51,6 +43,41 @@ TeleportSection:NewButton("LandStore", "Teleports you to the LandStore", functio
     wait(0.2)
     pl.CFrame = location
             print("Clicked")
+end)
+
+--Script Hub
+
+local ScriptHub = Window:NewTab("Script Hub")
+local ScriptHubSection = ScriptHub:NewSection("GUI")
+--Solo Dupe
+ScriptHubSection:NewButton("Solo Dupe GUI", "Opens dupe GUI", function (v)
+    loadstring(game:HttpGet"https://raw.githubusercontent.com/0x37Dev/Cool-Solo-Dupe-Thing/main/script.lua")()
+end)
+--HDogs GUI
+ScriptHubSection:NewButton("LT2 GUI", "This is a very good GUI", function (v)
+    loadstring(game:HttpGet"https://raw.githubusercontent.com/ToxicLordDevelopment/HDogs-GUI/main/Main")()
+end)
+--Extreme Dupe
+ScriptHubSection:NewButton("LT2 Duper", "This is a very good duper", function (v)
+    loadstring(game:HttpGet("https://pastebin.com/raw/ghRqqbLb"))()
+end)
+--Money Dupe GUI
+ScriptHubSection:NewButton("LT2 Money Duper", "This is a very good duper", function (v)
+    local library = loadstring(game:HttpGet("https://pastebin.com/raw/CkyR8ePz", true))()
+local w = library:CreateWindow('Money')
+ 
+w:Button('Send Money',function()
+    game.ReplicatedStorage.Transactions.ClientToServer.Donate:InvokeServer(game.Players.LocalPlayer,game.Players.LocalPlayer.leaderstats.Money.Value,1)
+end)
+ 
+local w2 = library:CreateWindow('Slots')
+local txt 
+w2:Box('Slot',{type = 'number'},function(val)
+    txt = val
+end)
+w2:Button('Load',function()
+game:GetService("ReplicatedStorage").LoadSaveRequests.RequestLoad:InvokeServer(txt,game:GetService("Players").LocalPlayer)
+end)
 end)
 
     --Settings
